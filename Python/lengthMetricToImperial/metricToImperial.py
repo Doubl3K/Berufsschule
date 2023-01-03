@@ -57,6 +57,7 @@ class Aplication():
         #Window constraints
         root = Tk()
         root.title("Metric to Imperial")
+        root.resizable(False, False)
         frm = ttk.Frame(root, padding=20)
         frm.grid()
 
@@ -84,13 +85,13 @@ class Aplication():
         impChooser.current(0)
 
         #Choose in wich direction you want to convert
-        directionChooser = ttk.Combobox(frm, values=("metric -> imperial","imperial -> metric"), justify="center", state="readonly")
-        directionChooser.grid(column=1, row=1)
+        directionChooser = ttk.Combobox(frm, values=("metric -> imperial","imperial -> metric"))
+        directionChooser.grid(column=1, row=1, columnspan=2, pady=10)
         directionChooser.current(0)
 
         #Button to run calculation and give parameters to Calc class
-        calcButton = ttk.Button(text="calculate", command= lambda:Calculation.chooser(directionChooser.get(), metText, impText, metChooser.get()))
-        calcButton.grid(column=1, row=2)
+        calcButton = ttk.Button(frm, text="calculate", command= lambda:Calculation.chooser(directionChooser.get(), metText, impText, metChooser.get()))
+        calcButton.grid(column=1, row=3, columnspan=2)
 
         root.mainloop()
     window()
