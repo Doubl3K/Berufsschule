@@ -27,9 +27,9 @@ class Calculation:
     #declares calulation direction
     def chooser(direction, met, imp, metChooser):
         if (Calculation.inputValidation(met, imp) == False):
+            #returns to not change any values if userinput cant be used
             return
         direction = direction.get()
-        print(direction)
         if (direction == "metric -> imperial"):
             if (metChooser == "m"):
                 imp.delete(0, "end");
