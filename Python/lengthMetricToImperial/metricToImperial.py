@@ -28,7 +28,8 @@ class Calculation:
     def chooser(direction, met, imp, metChooser):
         if (Calculation.inputValidation(met, imp) == False):
             return
-
+        direction = direction.get()
+        print(direction)
         if (direction == "metric -> imperial"):
             if (metChooser == "m"):
                 imp.delete(0, "end");
@@ -43,13 +44,13 @@ class Calculation:
         elif (direction == "imperial -> metric"):
             if (metChooser == "m"):
                 met.delete(0, "end");
-                met.insert(0 ,Calculation.metricToImp(float(imp.get())/100)) 
+                met.insert(0, Calculation.impToMetric(float(imp.get())/100))
             elif (metChooser == "km"):
                 met.delete(0, "end")
-                met.insert(0, Calculation.metricToImp(float(imp.get())/100000))
+                met.insert(0, Calculation.impToMetric(float(imp.get())/100000))
             else:
                 met.delete(0, "end")
-                met.insert(0, Calculation.metricToImp(float(imp.get())))
+                met.insert(0, Calculation.impToMetric(float(imp.get())))
 
 class Aplication():
     def window():
@@ -90,7 +91,7 @@ class Aplication():
         directionChooser.current(0)
 
         #Button to run calculation and give parameters to Calc class
-        calcButton = ttk.Button(frm, text="calculate", command= lambda:Calculation.chooser(directionChooser.get(), metText, impText, metChooser.get()))
+        calcButton = ttk.Button(frm, text="calculate", command= lambda:Calculation.chooser(directionChooser, metText, impText, metChooser.get()))
         calcButton.grid(column=1, row=3, columnspan=2)
 
         root.mainloop()
